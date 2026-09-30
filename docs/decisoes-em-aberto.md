@@ -1,5 +1,9 @@
 # Decisões em aberto da V1
 
+## Serviços gratuitos ou cortesias: 
+
+confirmar se atendimentos com valor zero devem entrar apenas em indicadores operacionais ou também impactar todos os indicadores financeiros.
+
 ## Fluxo de caixa
 
 Decisão em aberto: atendimento concluído gera entrada automática no caixa ou as entradas serão registradas separadamente?

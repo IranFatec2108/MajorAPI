@@ -12,7 +12,7 @@ A V1 foi pensada para evoluir em fatias, começando pelo módulo de Serviços. A
 
 ## Estado atual
 
-No momento, o projeto está na fase de levantamento de requisitos e definição da primeira fatia do módulo de Serviços. As decisões iniciais e dúvidas abertas estão registradas na pasta `docs/` para orientar a modelagem e evitar regras desalinhadas.
+No momento, o projeto concluiu a primeira fatia técnica do módulo de Serviços, com a entidade Servico criada e compatível com persistência JPA. As decisões iniciais e dúvidas abertas continuam registradas na pasta docs/, e as próximas etapas do módulo devem evoluir de forma incremental.
 
 ## Módulos previstos
 

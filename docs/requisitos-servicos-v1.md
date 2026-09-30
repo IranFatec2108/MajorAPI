@@ -27,8 +27,7 @@ Campos previstos:
 - O `id` deve ser gerado pelo sistema.
 - Todo serviço novo deve ser criado com `ativo = true`.
 - O nome do serviço deve ser obrigatório.
-- Não deve haver duplicação de nome entre serviços cadastrados; nomes compostos são permitidos.
-- O preço sugerido pode ser alterado depois.
+- Não deve haver duplicação de nome entre serviços ativos; um novo serviço pode reutilizar o nome de um serviço inativo.- O preço sugerido pode ser alterado depois.
 - O nome do serviço também pode ser alterado depois.
 - Serviços inativos não devem ser usados em novos registros de atendimento.
 - Um serviço inativo não precisa ser excluído fisicamente do banco.
@@ -69,4 +68,4 @@ Serviços mencionados como possibilidade futura:
 
 - Será necessário filtrar serviços ativos e inativos já na primeira versão?
 - Haverá categorias de serviço em versões futuras?
-- O preço sugerido será sempre preenchido ou poderá ser opcional?
+- Preço sugerido zero deve ser tratado como serviço gratuito/cortesia ou apenas como valor provisório permitido até validação com o dono?
