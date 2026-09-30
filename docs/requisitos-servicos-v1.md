@@ -27,7 +27,7 @@ Campos previstos:
 - O `id` deve ser gerado pelo sistema.
 - Todo serviço novo deve ser criado com `ativo = true`.
 - O nome do serviço deve ser obrigatório.
-- Não deve haver duplicação de nome entre serviços cadastrados.
+- Não deve haver duplicação de nome entre serviços cadastrados; nomes compostos são permitidos.
 - O preço sugerido pode ser alterado depois.
 - O nome do serviço também pode ser alterado depois.
 - Serviços inativos não devem ser usados em novos registros de atendimento.
