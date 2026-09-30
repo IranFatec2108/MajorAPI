@@ -12,7 +12,7 @@ A V1 foi pensada para evoluir em fatias, começando pelo módulo de Serviços. A
 
 ## Estado atual
 
-No momento, o projeto concluiu a primeira fatia técnica do módulo de Serviços, com a entidade Servico criada e compatível com persistência JPA. As decisões iniciais e dúvidas abertas continuam registradas na pasta docs/, e as próximas etapas do módulo devem evoluir de forma incremental.
+No momento, o projeto concluiu duas primeiras fatias técnicas do módulo de Serviços: a entidade `Servico` e o `ServicoRepository`, ambos compatíveis com persistência JPA. As decisões iniciais e dúvidas abertas continuam registradas na pasta `docs/`, e a próxima etapa natural do módulo é a criação da camada de serviço para aplicar as regras de negócio.
 
 ## Módulos previstos
 
@@ -34,7 +34,7 @@ Não fazem parte da primeira versão: agendamento online, automação de WhatsAp
 
 ## Próximos passos
 
-1. Revisar e consolidar os requisitos do módulo de Serviços.
-2. Criar a issue de modelagem da entidade `Servico`.
-3. Implementar a primeira fatia técnica do projeto com base na documentação validada.
-4. Atualizar o README conforme o projeto evoluir, registrando o que foi implementado, o que está simulado e o que ainda falta.
+1. Criar a camada de serviço do módulo de Serviços.
+2. Aplicar a regra de duplicidade considerando apenas serviços ativos.
+3. Evoluir o fluxo de cadastro e consulta do módulo de forma incremental.
+4. Atualizar o README conforme novas fatias técnicas forem concluídas.
