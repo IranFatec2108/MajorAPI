@@ -12,7 +12,13 @@ A V1 foi pensada para evoluir em fatias, começando pelo módulo de Serviços. A
 
 ## Estado atual
 
-No momento, o projeto concluiu duas primeiras fatias técnicas do módulo de Serviços: a entidade `Servico` e o `ServicoRepository`, ambos compatíveis com persistência JPA. As decisões iniciais e dúvidas abertas continuam registradas na pasta `docs/`, e a próxima etapa natural do módulo é a criação da camada de serviço para aplicar as regras de negócio.
+No momento, o projeto concluiu as primeiras fatias técnicas do módulo de Serviços:
+- entidade `Servico` compatível com persistência JPA;
+- `ServicoRepository` para acesso aos dados;
+- exceptions específicas para validação de cadastro;
+- `ServicoService` com o caso de uso de cadastro implementado.
+
+O fluxo atual de cadastro valida objeto nulo, nome obrigatório e duplicidade entre serviços ativos, define novos serviços como ativos por padrão e persiste a entidade pelo repository. As decisões iniciais e dúvidas abertas continuam registradas na pasta `docs/`.
 
 ## Módulos previstos
 
@@ -27,14 +33,15 @@ No momento, o projeto concluiu duas primeiras fatias técnicas do módulo de Ser
 
 Não fazem parte da primeira versão: agendamento online, automação de WhatsApp, integrações financeiras, pagamentos, aplicativo mobile, gráficos avançados e autenticação avançada sem nova decisão explícita.
 
-## Documentação inicial
+## Documentação
 
-- `docs/requisitos-servicos-v1.md`: requisitos do primeiro módulo a ser implementado.
+- `docs/requisitos-servicos-v1.md`: requisitos do primeiro módulo.
 - `docs/decisoes-em-aberto.md`: decisões importantes ainda não fechadas.
 
 ## Próximos passos
 
-1. Criar a camada de serviço do módulo de Serviços.
-2. Aplicar a regra de duplicidade considerando apenas serviços ativos.
-3. Evoluir o fluxo de cadastro e consulta do módulo de forma incremental.
-4. Atualizar o README conforme novas fatias técnicas forem concluídas.
+1. Expor o cadastro de serviços por endpoint REST.
+2. Definir DTOs de entrada e saída do módulo de Serviços.
+3. Tratar respostas HTTP para cenários de sucesso, validação e conflito.
+4. Evoluir o módulo de forma incremental com listagem, edição e inativação.
+5. Atualizar o README conforme novas fatias técnicas forem concluídas.

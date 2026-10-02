@@ -1,8 +1,8 @@
 # Decisões em aberto da V1
 
-## Serviços gratuitos ou cortesias: 
+## Serviços gratuitos ou cortesias
 
-confirmar se atendimentos com valor zero devem entrar apenas em indicadores operacionais ou também impactar todos os indicadores financeiros.
+Confirmar se atendimentos com valor zero devem entrar apenas em indicadores operacionais ou também impactar os indicadores financeiros.
 
 ## Fluxo de caixa
 
@@ -18,7 +18,7 @@ Não modelar nem implementar isso agora. Validar primeiro com o dono da barbeari
 
 ## Forma de pagamento
 
-Ainda não está definido se forma de pagamento entra já no registro de atendimento da V1 ou se fica para uma etapa posterior.
+Ainda não está definido se a forma de pagamento entra já no registro de atendimento da V1 ou se fica para uma etapa posterior.
 
 ## Produtos e estoque
 

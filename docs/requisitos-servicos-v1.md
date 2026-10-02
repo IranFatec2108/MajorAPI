@@ -13,6 +13,20 @@ Nesta etapa, o sistema deve permitir:
 - Editar um serviço
 - Inativar um serviço
 
+## Estado de implementação da fatia
+
+Implementado até o momento:
+- entidade `Servico`;
+- persistência via `ServicoRepository`;
+- validações iniciais e cadastro via `ServicoService`.
+
+Ainda pendente nesta fatia:
+- exposição do cadastro por endpoint REST;
+- listagem de serviços;
+- edição de serviço;
+- inativação de serviço;
+- definição de DTOs e respostas HTTP.
+
 ## Entidade Servico
 
 Campos previstos:
