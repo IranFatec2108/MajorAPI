@@ -4,30 +4,44 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ServicoService {
-
-    final private ServicoRepository servicoRepository;
+     private final ServicoRepository servicoRepository;
 
     public ServicoService(ServicoRepository servicoRepository) {
         this.servicoRepository = servicoRepository;
     }
 
-    public Servico cadastrarServico(Servico servico) throws ServicoVazioException, NomeInvalidoException, NomeAtivoJaExistenteException {
-        if (servico == null) {
-            throw new ServicoVazioException("Os campos de cadastros são inválidos, por favor preencher todos os campos");
-        }
-        if (servico.getNome() == null || servico.getNome().isBlank()) {
-            throw new NomeInvalidoException("O campo de nome não pode ser vazio");
-        }
+    public ServicoResponseDto cadastrarServico(ServicoRequestDto dto) throws  NomeAtivoJaExistenteException {
 
-        if (servicoRepository.existsByNomeIgnoreCaseAndAtivoTrue(servico.getNome())) {
+
+        if (servicoRepository.existsByNomeIgnoreCaseAndAtivoTrue(dto.nome())) {
             throw new NomeAtivoJaExistenteException("O nome a ser cadastrado já existe em um serviço ativo");
         }
 
-        servico.setAtivo(true);
+        Servico servico = toEntity(dto);
 
         Servico servicoSalvo = servicoRepository.save(servico);
 
-        return servicoSalvo;
+        return toResponseDto(servicoSalvo);
+
+     }
+
+    private Servico toEntity(ServicoRequestDto dto){
+
+        Servico servico = new Servico();
+        servico.setNome(dto.nome());
+        servico.setPrecoSugerido(dto.precoSugerido());
+        servico.setAtivo(true);
+        return servico;
+    }
+
+    private ServicoResponseDto toResponseDto(Servico servico){
+
+        return new ServicoResponseDto(
+                servico.getId(),
+                servico.getNome(),
+                servico.getPrecoSugerido(),
+                servico.isAtivo()
+        );
     }
 }
 
