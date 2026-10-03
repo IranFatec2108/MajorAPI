@@ -1,24 +1,40 @@
 # Barbearia Control API
 
-Projeto de portfólio backend em Java e Spring Boot para uma barbearia real, com foco em aprender modelagem de domínio, regras de negócio, persistência e construção de API REST a partir de um caso de uso concreto. A proposta da V1 é ser simples, incremental e honesta quanto ao escopo e às limitações.
+Projeto de portfólio backend em Java e Spring Boot para uma barbearia real, com foco no aprendizado de modelagem de domínio, regras de negócio, persistência e construção de uma API REST a partir de um caso de uso concreto.
+
+A V1 foi planejada para ser simples, incremental e honesta quanto ao seu escopo e às suas limitações.
 
 ## Objetivo
 
-Construir uma API para apoiar o controle interno da barbearia, priorizando o cadastro de serviços e, em etapas futuras, o registro de atendimentos, movimento financeiro simples, estoque básico e assinaturas.
+Construir uma API para apoiar o controle interno da barbearia, começando pelo cadastro de serviços e evoluindo futuramente para o registro de atendimentos, controle financeiro simples, estoque básico e assinaturas, caso ainda façam sentido para o negócio.
 
 ## Escopo da V1
 
-A V1 foi pensada para evoluir em fatias, começando pelo módulo de Serviços. A ordem de implementação prevista é: Serviços, Registro de Atendimentos, Consultas de Atendimentos, Entradas e Saídas, Indicadores Financeiros, Produtos/Estoque e, por fim, Assinantes se ainda fizer sentido para o negócio.
+A V1 está sendo desenvolvida em fatias, começando pelo módulo de Serviços.
+
+A ordem de implementação planejada é:
+
+1. Serviços
+2. Registro de atendimentos
+3. Consultas de atendimentos
+4. Entradas e saídas
+5. Indicadores financeiros
+6. Produtos e estoque
+7. Assinantes, caso ainda façam sentido para o negócio
 
 ## Estado atual
 
-No momento, o projeto concluiu as primeiras fatias técnicas do módulo de Serviços:
-- entidade `Servico` compatível com persistência JPA;
-- `ServicoRepository` para acesso aos dados;
-- exceptions específicas para validação de cadastro;
-- `ServicoService` com o caso de uso de cadastro implementado.
+Até o momento, foram concluídas as primeiras fatias técnicas do módulo de Serviços:
 
-O fluxo atual de cadastro valida objeto nulo, nome obrigatório e duplicidade entre serviços ativos, define novos serviços como ativos por padrão e persiste a entidade pelo repository. As decisões iniciais e dúvidas abertas continuam registradas na pasta `docs/`.
+- entidade `Servico` configurada para persistência com JPA;
+- `ServicoRepository` para acesso aos dados;
+- `ServicoRequestDto` e `ServicoResponseDto` para entrada e saída da API;
+- `ServicoService` com o caso de uso de cadastro e mapeamento entre entidade e DTO;
+- `ServicoController` com endpoint REST para cadastro de serviços.
+
+O fluxo atual de cadastro recebe os dados pela API REST, valida o DTO de entrada, verifica duplicidade de nome entre serviços ativos, define novos serviços como ativos por padrão, persiste a entidade pelo repository e retorna `201 Created` com um DTO de resposta.
+
+As decisões iniciais e dúvidas ainda abertas continuam registradas na pasta `docs/`.
 
 ## Módulos previstos
 
@@ -31,17 +47,25 @@ O fluxo atual de cadastro valida objeto nulo, nome obrigatório e duplicidade en
 
 ## Limites da V1
 
-Não fazem parte da primeira versão: agendamento online, automação de WhatsApp, integrações financeiras, pagamentos, aplicativo mobile, gráficos avançados e autenticação avançada sem nova decisão explícita.
+Não fazem parte da primeira versão:
+
+- agendamento online;
+- automação de WhatsApp;
+- integrações financeiras;
+- pagamentos;
+- aplicativo mobile;
+- gráficos avançados;
+- autenticação avançada sem uma nova decisão explícita.
 
 ## Documentação
 
-- `docs/requisitos-servicos-v1.md`: requisitos do primeiro módulo.
-- `docs/decisoes-em-aberto.md`: decisões importantes ainda não fechadas.
+- `docs/requisitos-servicos-v1.md`: requisitos e anotações de implementação do primeiro módulo.
+- `docs/decisoes-em-aberto.md`: decisões importantes que ainda precisam ser validadas.
 
 ## Próximos passos
 
-1. Expor o cadastro de serviços por endpoint REST.
-2. Definir DTOs de entrada e saída do módulo de Serviços.
-3. Tratar respostas HTTP para cenários de sucesso, validação e conflito.
-4. Evoluir o módulo de forma incremental com listagem, edição e inativação.
-5. Atualizar o README conforme novas fatias técnicas forem concluídas.
+1. Padronizar o tratamento de erros da API com `@RestControllerAdvice`.
+2. Implementar a listagem de serviços.
+3. Implementar a edição de serviços.
+4. Implementar a inativação de serviços.
+5. Manter o README e os documentos atualizados a cada nova fatia concluída.
