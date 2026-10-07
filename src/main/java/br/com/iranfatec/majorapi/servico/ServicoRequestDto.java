@@ -8,10 +8,10 @@ import java.math.BigDecimal;
 
 public record ServicoRequestDto(
 
-    @NotBlank(message = "O nome do serviço é obrigatório")
+    @NotBlank(message="O nome do serviço é obrigatório")
     String nome,
 
-    @NotNull(message = "O preço sugerido é obrigatório")
+    @NotNull(message="O preço sugerido é obrigatório")
     @PositiveOrZero (message = "O preço sugerido deve ser zero ou positivo")
     BigDecimal precoSugerido
 ) {}
