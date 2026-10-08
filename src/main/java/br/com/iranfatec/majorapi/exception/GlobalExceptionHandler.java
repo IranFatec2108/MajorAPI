@@ -1,6 +1,7 @@
 package br.com.iranfatec.majorapi.exception;
 
 import br.com.iranfatec.majorapi.servico.NomeAtivoJaExistenteException;
+import br.com.iranfatec.majorapi.servico.ServicoNaoEncontradoException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -42,6 +43,18 @@ public class GlobalExceptionHandler {
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
                 .body(apiErrorResponse);
+    }
+
+    @ExceptionHandler(ServicoNaoEncontradoException.class)
+    public ResponseEntity <ApiErrorResponse> servicoNaoEncontradoException(ServicoNaoEncontradoException servicoNaoEncontradoException){
+        ApiErrorResponse apiErrorResponse = new ApiErrorResponse(
+                HttpStatus.NOT_FOUND.value(),
+                servicoNaoEncontradoException.getMessage()
+        );
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(apiErrorResponse);
+
     }
 }
 

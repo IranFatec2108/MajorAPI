@@ -29,10 +29,11 @@ Até o momento, foram concluídas as primeiras partes técnicas do módulo de Se
 - entidade `Servico` configurada para persistência com JPA;
 - `ServicoRepository` para acesso aos dados;
 - `ServicoRequestDto` e `ServicoResponseDto` para entrada e saída da API;
-- `ServicoService` com os casos de uso de cadastro e listagem e mapeamento entre entidade e DTO;
-- `ServicoController` com endpoints REST para cadastro e listagem de serviços;
+- `ServicoService` com os casos de uso de cadastro, listagem e busca por id e mapeamento entre entidade e DTO;
+- `ServicoController` com endpoints REST para cadastro, listagem e busca por id de serviços;
 - `GlobalExceptionHandler` com `@RestControllerAdvice` e `ApiErrorResponse(statusCode, message)` para respostas de erro padronizadas;
-- `NomeAtivoJaExistenteException` como exceção de negócio não checada (`RuntimeException`).
+- `NomeAtivoJaExistenteException` como exceção de negócio não checada (`RuntimeException`);
+- `ServicoNaoEncontradoException` como exceção de negócio não checada para id inexistente.
 
 O fluxo atual de cadastro recebe os dados pela API REST, valida o DTO de entrada, verifica duplicidade de nome entre serviços ativos, define novos serviços como ativos por padrão, persiste a entidade pelo repository e retorna `201 Created` com um DTO de resposta.
 
@@ -45,6 +46,7 @@ Respostas atuais do cadastro:
 Listagem atual:
 
 - `GET /servicos` retorna `200 OK` com a lista de `ServicoResponseDto`, mesmo que vazia (`[]`).
+- `GET /servicos/{id}` retorna `200 OK` com o `ServicoResponseDto` quando existe e `404 Not Found` no formato `ApiErrorResponse` quando não existe.
 
 As decisões iniciais e dúvidas ainda abertas continuam registradas na pasta `docs/`.
 

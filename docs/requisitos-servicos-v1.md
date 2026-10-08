@@ -22,14 +22,17 @@ Nesta etapa, o sistema deve permitir:
 - `ServicoRequestDto` e `ServicoResponseDto`;
 - caso de uso de cadastro por meio do `ServicoService`;
 - caso de uso de listagem por meio do `ServicoService`;
+- caso de uso de busca por id por meio do `ServicoService` com `findById` e `Optional`;
 - endpoint REST para cadastro de serviço;
 - endpoint REST `GET /servicos` para listagem de serviços;
+- endpoint REST `GET /servicos/{id}` para busca por id com `@PathVariable`;
 - validação da entrada com Bean Validation;
 - retorno HTTP `201 Created` em caso de cadastro bem-sucedido;
 - tratamento global de erros com `GlobalExceptionHandler` e `ApiErrorResponse(statusCode, message)`;
 - duplicidade de nome entre ativos retorna `409 Conflict`;
 - dados inválidos no DTO retornam `400 Bad Request` com as mensagens juntas;
-- exceção de negócio `NomeAtivoJaExistenteException` como `RuntimeException`, sem `throws` no service e no controller.
+- exceção de negócio `NomeAtivoJaExistenteException` como `RuntimeException`, sem `throws` no service e no controller;
+- busca por id inexistente retorna `404 Not Found` por meio de `ServicoNaoEncontradoException` no formato `ApiErrorResponse`.
 
 ### Ainda pendente nesta parte
 
