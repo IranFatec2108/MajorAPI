@@ -3,6 +3,7 @@ package br.com.iranfatec.majorapi.servico;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -34,6 +35,17 @@ public class ServicoService {
                 .map(this::toResponseDto)
                 .collect(Collectors.toList());
      }
+
+     public ServicoResponseDto listarPorId(Long id){
+        Optional<Servico> servicoAchado = servicoRepository.findById(id);
+
+        if(servicoAchado.isEmpty()){
+           throw new ServicoNaoEncontradoException ("Esse serviço não existe, por favor digite um id válido");
+        }else{
+           return toResponseDto(servicoAchado.get());
+        }
+     }
+
 
     private Servico toEntity(ServicoRequestDto dto){
 

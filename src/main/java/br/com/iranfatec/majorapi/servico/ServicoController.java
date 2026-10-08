@@ -30,6 +30,12 @@ public class ServicoController {
         List<ServicoResponseDto> servicos = servicoService.listarServicos();
         return ResponseEntity.ok(servicos);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ServicoResponseDto> listarPorId(@PathVariable Long id){
+        ServicoResponseDto responsePorId = servicoService.listarPorId(id);
+        return ResponseEntity.ok().body(responsePorId);
+    }
 }
 
 
