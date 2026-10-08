@@ -4,7 +4,7 @@
 
 Permitir o cadastro e a manutenção dos serviços oferecidos pela barbearia, com informações básicas e regras simples de disponibilidade para uso futuro nos registros de atendimento.
 
-## Escopo desta primeira fatia
+## Escopo desta primeira parte
 
 Nesta etapa, o sistema deve permitir:
 
@@ -13,7 +13,7 @@ Nesta etapa, o sistema deve permitir:
 - editar um serviço;
 - inativar um serviço.
 
-## Estado de implementação da fatia
+## Estado de implementação da parte
 
 ### Implementado até o momento
 
@@ -23,14 +23,17 @@ Nesta etapa, o sistema deve permitir:
 - caso de uso de cadastro por meio do `ServicoService`;
 - endpoint REST para cadastro de serviço;
 - validação da entrada com Bean Validation;
-- retorno HTTP `201 Created` em caso de cadastro bem-sucedido.
+- retorno HTTP `201 Created` em caso de cadastro bem-sucedido;
+- tratamento global de erros com `GlobalExceptionHandler` e `ApiErrorResponse(statusCode, message)`;
+- duplicidade de nome entre ativos retorna `409 Conflict`;
+- dados inválidos no DTO retornam `400 Bad Request` com as mensagens juntas;
+- exceção de negócio `NomeAtivoJaExistenteException` como `RuntimeException`, sem `throws` no service e no controller.
 
-### Ainda pendente nesta fatia
+### Ainda pendente nesta parte
 
 - listagem de serviços;
 - edição de serviço;
-- inativação de serviço;
-- tratamento global e padronizado dos erros da API.
+- inativação de serviço.
 
 ## Entidade `Servico`
 
@@ -74,7 +77,7 @@ Serviços mencionados como possibilidades futuras:
 - Barba terapia;
 - Limpeza de pele.
 
-## Fora do escopo desta fatia
+## Fora do escopo desta parte
 
 - registro de atendimentos;
 - indicadores;

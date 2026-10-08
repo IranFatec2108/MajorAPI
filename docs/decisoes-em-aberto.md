@@ -22,7 +22,7 @@ Ainda não está definido se a forma de pagamento entra já no registro de atend
 
 ## Produtos e estoque
 
-Produtos e estoque básico fazem parte da visão maior da V1, mas entram depois do módulo de Serviços e da primeira fatia de Atendimentos.
+Produtos e estoque básico fazem parte da visão maior da V1, mas entram depois do módulo de Serviços e da primeira parte de Atendimentos.
 
 ## Categorias de serviço
 

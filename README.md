@@ -10,7 +10,7 @@ Construir uma API para apoiar o controle interno da barbearia, começando pelo c
 
 ## Escopo da V1
 
-A V1 está sendo desenvolvida em fatias, começando pelo módulo de Serviços.
+A V1 está sendo desenvolvida em partes, começando pelo módulo de Serviços.
 
 A ordem de implementação planejada é:
 
@@ -24,15 +24,23 @@ A ordem de implementação planejada é:
 
 ## Estado atual
 
-Até o momento, foram concluídas as primeiras fatias técnicas do módulo de Serviços:
+Até o momento, foram concluídas as primeiras partes técnicas do módulo de Serviços:
 
 - entidade `Servico` configurada para persistência com JPA;
 - `ServicoRepository` para acesso aos dados;
 - `ServicoRequestDto` e `ServicoResponseDto` para entrada e saída da API;
 - `ServicoService` com o caso de uso de cadastro e mapeamento entre entidade e DTO;
-- `ServicoController` com endpoint REST para cadastro de serviços.
+- `ServicoController` com endpoint REST para cadastro de serviços;
+- `GlobalExceptionHandler` com `@RestControllerAdvice` e `ApiErrorResponse(statusCode, message)` para respostas de erro padronizadas;
+- `NomeAtivoJaExistenteException` como exceção de negócio não checada (`RuntimeException`).
 
 O fluxo atual de cadastro recebe os dados pela API REST, valida o DTO de entrada, verifica duplicidade de nome entre serviços ativos, define novos serviços como ativos por padrão, persiste a entidade pelo repository e retorna `201 Created` com um DTO de resposta.
+
+Respostas atuais do cadastro:
+
+- `201 Created`: serviço criado, retorna o DTO de resposta;
+- `400 Bad Request`: dados inválidos no DTO, retorna as mensagens de validação juntas no formato `ApiErrorResponse`;
+- `409 Conflict`: nome já existe em um serviço ativo, retorna a mensagem da regra de negócio no formato `ApiErrorResponse`.
 
 As decisões iniciais e dúvidas ainda abertas continuam registradas na pasta `docs/`.
 
@@ -64,8 +72,7 @@ Não fazem parte da primeira versão:
 
 ## Próximos passos
 
-1. Padronizar o tratamento de erros da API com `@RestControllerAdvice`.
-2. Implementar a listagem de serviços.
-3. Implementar a edição de serviços.
-4. Implementar a inativação de serviços.
-5. Manter o README e os documentos atualizados a cada nova fatia concluída.
+1. Implementar a listagem de serviços.
+2. Implementar a edição de serviços.
+3. Implementar a inativação de serviços.
+4. Manter o README e os documentos atualizados a cada nova parte concluída.
