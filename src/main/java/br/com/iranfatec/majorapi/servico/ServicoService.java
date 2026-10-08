@@ -2,6 +2,9 @@ package br.com.iranfatec.majorapi.servico;
 
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class ServicoService {
      private final ServicoRepository servicoRepository;
@@ -23,6 +26,13 @@ public class ServicoService {
 
         return toResponseDto(servicoSalvo);
 
+     }
+
+     public List<ServicoResponseDto> listarServicos(){
+        List<Servico> servicos = servicoRepository.findAll();
+        return servicos.stream()
+                .map(this::toResponseDto)
+                .collect(Collectors.toList());
      }
 
     private Servico toEntity(ServicoRequestDto dto){
