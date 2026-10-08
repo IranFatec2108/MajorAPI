@@ -10,7 +10,7 @@ public class ServicoService {
         this.servicoRepository = servicoRepository;
     }
 
-    public ServicoResponseDto cadastrarServico(ServicoRequestDto dto) throws  NomeAtivoJaExistenteException {
+    public ServicoResponseDto cadastrarServico(ServicoRequestDto dto) {
 
 
         if (servicoRepository.existsByNomeIgnoreCaseAndAtivoTrue(dto.nome())) {

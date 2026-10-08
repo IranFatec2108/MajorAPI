@@ -21,7 +21,7 @@ public class ServicoController {
     }
 
     @PostMapping
-    public ResponseEntity<ServicoResponseDto> cadastrar (@Valid @RequestBody ServicoRequestDto dto) throws NomeAtivoJaExistenteException {
+    public ResponseEntity<ServicoResponseDto> cadastrar (@Valid @RequestBody ServicoRequestDto dto)  {
             ServicoResponseDto response = servicoService.cadastrarServico(dto);
             return ResponseEntity.status(HttpStatus.CREATED).body(response);
         }
