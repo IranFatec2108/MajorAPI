@@ -21,7 +21,9 @@ Nesta etapa, o sistema deve permitir:
 - persistência por meio do `ServicoRepository`;
 - `ServicoRequestDto` e `ServicoResponseDto`;
 - caso de uso de cadastro por meio do `ServicoService`;
+- caso de uso de listagem por meio do `ServicoService`;
 - endpoint REST para cadastro de serviço;
+- endpoint REST `GET /servicos` para listagem de serviços;
 - validação da entrada com Bean Validation;
 - retorno HTTP `201 Created` em caso de cadastro bem-sucedido;
 - tratamento global de erros com `GlobalExceptionHandler` e `ApiErrorResponse(statusCode, message)`;
@@ -31,7 +33,6 @@ Nesta etapa, o sistema deve permitir:
 
 ### Ainda pendente nesta parte
 
-- listagem de serviços;
 - edição de serviço;
 - inativação de serviço.
 

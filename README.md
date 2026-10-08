@@ -29,8 +29,8 @@ Até o momento, foram concluídas as primeiras partes técnicas do módulo de Se
 - entidade `Servico` configurada para persistência com JPA;
 - `ServicoRepository` para acesso aos dados;
 - `ServicoRequestDto` e `ServicoResponseDto` para entrada e saída da API;
-- `ServicoService` com o caso de uso de cadastro e mapeamento entre entidade e DTO;
-- `ServicoController` com endpoint REST para cadastro de serviços;
+- `ServicoService` com os casos de uso de cadastro e listagem e mapeamento entre entidade e DTO;
+- `ServicoController` com endpoints REST para cadastro e listagem de serviços;
 - `GlobalExceptionHandler` com `@RestControllerAdvice` e `ApiErrorResponse(statusCode, message)` para respostas de erro padronizadas;
 - `NomeAtivoJaExistenteException` como exceção de negócio não checada (`RuntimeException`).
 
@@ -41,6 +41,10 @@ Respostas atuais do cadastro:
 - `201 Created`: serviço criado, retorna o DTO de resposta;
 - `400 Bad Request`: dados inválidos no DTO, retorna as mensagens de validação juntas no formato `ApiErrorResponse`;
 - `409 Conflict`: nome já existe em um serviço ativo, retorna a mensagem da regra de negócio no formato `ApiErrorResponse`.
+
+Listagem atual:
+
+- `GET /servicos` retorna `200 OK` com a lista de `ServicoResponseDto`, mesmo que vazia (`[]`).
 
 As decisões iniciais e dúvidas ainda abertas continuam registradas na pasta `docs/`.
 
@@ -72,7 +76,6 @@ Não fazem parte da primeira versão:
 
 ## Próximos passos
 
-1. Implementar a listagem de serviços.
-2. Implementar a edição de serviços.
-3. Implementar a inativação de serviços.
-4. Manter o README e os documentos atualizados a cada nova parte concluída.
+1. Implementar a edição de serviços.
+2. Implementar a inativação de serviços.
+3. Manter o README e os documentos atualizados a cada nova parte concluída.
