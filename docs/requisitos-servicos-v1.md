@@ -23,9 +23,12 @@ Nesta etapa, o sistema deve permitir:
 - caso de uso de cadastro por meio do `ServicoService`;
 - caso de uso de listagem por meio do `ServicoService`;
 - caso de uso de busca por id por meio do `ServicoService` com `findById` e `Optional`;
+- caso de uso de edição por meio do `ServicoService` com atualização de `nome` e `precoSugerido` na entidade existente;
 - endpoint REST para cadastro de serviço;
 - endpoint REST `GET /servicos` para listagem de serviços;
 - endpoint REST `GET /servicos/{id}` para busca por id com `@PathVariable`;
+- endpoint REST `PUT /servicos/{id}` para edição com DTO completo e `@PathVariable`;
+- consulta `existsByNomeIgnoreCaseAndAtivoTrueAndIdNot` para duplicidade ignorando o próprio serviço;
 - validação da entrada com Bean Validation;
 - retorno HTTP `201 Created` em caso de cadastro bem-sucedido;
 - tratamento global de erros com `GlobalExceptionHandler` e `ApiErrorResponse(statusCode, message)`;
@@ -36,7 +39,6 @@ Nesta etapa, o sistema deve permitir:
 
 ### Ainda pendente nesta parte
 
-- edição de serviço;
 - inativação de serviço.
 
 ## Entidade `Servico`

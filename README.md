@@ -29,8 +29,8 @@ Até o momento, foram concluídas as primeiras partes técnicas do módulo de Se
 - entidade `Servico` configurada para persistência com JPA;
 - `ServicoRepository` para acesso aos dados;
 - `ServicoRequestDto` e `ServicoResponseDto` para entrada e saída da API;
-- `ServicoService` com os casos de uso de cadastro, listagem e busca por id e mapeamento entre entidade e DTO;
-- `ServicoController` com endpoints REST para cadastro, listagem e busca por id de serviços;
+- `ServicoService` com os casos de uso de cadastro, listagem, busca por id e edição e mapeamento entre entidade e DTO;
+- `ServicoController` com endpoints REST para cadastro, listagem, busca por id e edição de serviços;
 - `GlobalExceptionHandler` com `@RestControllerAdvice` e `ApiErrorResponse(statusCode, message)` para respostas de erro padronizadas;
 - `NomeAtivoJaExistenteException` como exceção de negócio não checada (`RuntimeException`);
 - `ServicoNaoEncontradoException` como exceção de negócio não checada para id inexistente.
@@ -47,6 +47,15 @@ Listagem atual:
 
 - `GET /servicos` retorna `200 OK` com a lista de `ServicoResponseDto`, mesmo que vazia (`[]`).
 - `GET /servicos/{id}` retorna `200 OK` com o `ServicoResponseDto` quando existe e `404 Not Found` no formato `ApiErrorResponse` quando não existe.
+
+Edição atual:
+
+- `PUT /servicos/{id}` recebe o `ServicoRequestDto` completo e retorna `200 OK` com o `ServicoResponseDto` atualizado.
+- A edição exige `nome` e `precoSugerido` juntos, mesmo quando só um campo mudou, e não altera o campo `ativo`.
+- A verificação de duplicidade ignora o próprio serviço, então manter o mesmo nome não gera conflito.
+- `400 Bad Request`: dados inválidos no DTO, no formato `ApiErrorResponse`.
+- `404 Not Found`: id inexistente, no formato `ApiErrorResponse`.
+- `409 Conflict`: nome já existe em outro serviço ativo, no formato `ApiErrorResponse`.
 
 As decisões iniciais e dúvidas ainda abertas continuam registradas na pasta `docs/`.
 
@@ -78,6 +87,5 @@ Não fazem parte da primeira versão:
 
 ## Próximos passos
 
-1. Implementar a edição de serviços.
-2. Implementar a inativação de serviços.
-3. Manter o README e os documentos atualizados a cada nova parte concluída.
+1. Implementar a inativação de serviços.
+2. Manter o README e os documentos atualizados a cada nova parte concluída.
