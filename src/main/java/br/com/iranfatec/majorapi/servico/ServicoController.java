@@ -36,6 +36,11 @@ public class ServicoController {
         ServicoResponseDto responsePorId = servicoService.listarPorId(id);
         return ResponseEntity.ok().body(responsePorId);
     }
+    @PutMapping("/{id}")
+    public ResponseEntity<ServicoResponseDto> alterarPorId(@PathVariable Long id , @Valid @RequestBody ServicoRequestDto dto){
+        ServicoResponseDto responseAlterarPorId = servicoService.alterarPorId(id, dto);
+        return ResponseEntity.ok().body(responseAlterarPorId);
+    }
 }
 
 

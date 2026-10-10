@@ -46,6 +46,26 @@ public class ServicoService {
         }
      }
 
+     public ServicoResponseDto alterarPorId(Long id, ServicoRequestDto dto){
+        Optional <Servico> servicoPorId = servicoRepository.findById(id);
+        if (servicoPorId.isEmpty()){
+            throw new ServicoNaoEncontradoException("Serviço não encontrado, por favor digite um id válido para alterar um serviço");
+        }
+        if (servicoRepository.existsByNomeIgnoreCaseAndAtivoTrueAndIdNot(dto.nome(), id)){
+            throw new NomeAtivoJaExistenteException("O nome já existe em um serviço ativo, por favor escrever nome válido");
+
+        }
+
+        Servico servicoValidado = servicoPorId.get();
+        servicoValidado.setNome(dto.nome());
+        servicoValidado.setPrecoSugerido(dto.precoSugerido());
+
+
+        Servico servico = servicoRepository.save(servicoValidado);
+        return toResponseDto(servico);
+
+     }
+
 
     private Servico toEntity(ServicoRequestDto dto){
 
