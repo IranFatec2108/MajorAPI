@@ -63,8 +63,10 @@ Campos previstos:
 - O nome do serviço também pode ser alterado posteriormente.
 - Serviços inativos não devem ser utilizados em novos registros de atendimento.
 - Um serviço inativo não precisa ser excluído fisicamente do banco de dados.
+- A edição é permitida para serviços ativos e inativos, sem alterar o campo `ativo`.
+- Só existe inativação na V1, sem reativação e sem exclusão física.
+- Lista retorna ativos e inativos juntos na V1, sem `?ativo`.
 - Combos podem ser cadastrados como serviços comuns, sem necessidade de lógica especial nesta etapa.
-- Lista retorna ativos e inativos juntos na V1, sem ?ativo.
 ## Catálogo inicial levantado
 
 Serviços já mencionados:
