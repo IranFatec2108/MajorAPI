@@ -64,7 +64,7 @@ Campos previstos:
 - Serviços inativos não devem ser utilizados em novos registros de atendimento.
 - Um serviço inativo não precisa ser excluído fisicamente do banco de dados.
 - Combos podem ser cadastrados como serviços comuns, sem necessidade de lógica especial nesta etapa.
-
+- Lista retorna ativos e inativos juntos na V1, sem ?ativo.
 ## Catálogo inicial levantado
 
 Serviços já mencionados:
@@ -98,6 +98,5 @@ Serviços mencionados como possibilidades futuras:
 
 ## Dúvidas em aberto
 
-- Será necessário filtrar serviços ativos e inativos já na primeira versão?
 - Os serviços precisarão de categorias em versões futuras?
 - O preço zero deve ser tratado como serviço gratuito ou cortesia, ou apenas como um valor provisório permitido até a validação com o responsável pela barbearia?
