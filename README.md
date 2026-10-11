@@ -29,8 +29,8 @@ Até o momento, foram concluídas as primeiras partes técnicas do módulo de Se
 - entidade `Servico` configurada para persistência com JPA;
 - `ServicoRepository` para acesso aos dados;
 - `ServicoRequestDto` e `ServicoResponseDto` para entrada e saída da API;
-- `ServicoService` com os casos de uso de cadastro, listagem, busca por id e edição e mapeamento entre entidade e DTO;
-- `ServicoController` com endpoints REST para cadastro, listagem, busca por id e edição de serviços;
+- `ServicoService` com os casos de uso de cadastro, listagem, busca por id, edição e inativação e mapeamento entre entidade e DTO;
+- `ServicoController` com endpoints REST para cadastro, listagem, busca por id, edição e inativação de serviços;
 - `GlobalExceptionHandler` com `@RestControllerAdvice` e `ApiErrorResponse(statusCode, message)` para respostas de erro padronizadas;
 - `NomeAtivoJaExistenteException` como exceção de negócio não checada (`RuntimeException`);
 - `ServicoNaoEncontradoException` como exceção de negócio não checada para id inexistente.
@@ -56,6 +56,14 @@ Edição atual:
 - `400 Bad Request`: dados inválidos no DTO, no formato `ApiErrorResponse`.
 - `404 Not Found`: id inexistente, no formato `ApiErrorResponse`.
 - `409 Conflict`: nome já existe em outro serviço ativo, no formato `ApiErrorResponse`.
+
+Inativação atual:
+
+- `PATCH /servicos/{id}/inativar` recebe só o id na URL, sem corpo, e retorna `200 OK` com o `ServicoResponseDto` com `ativo=false`.
+- A inativação é lógica, sem exclusão física, e o inativo continua no banco para histórico.
+- Inativar algo já inativo mantém inativo, sem erro novo.
+- Um novo serviço pode reutilizar o nome de um serviço inativo.
+- `404 Not Found`: id inexistente, no formato `ApiErrorResponse`.
 
 As decisões iniciais e dúvidas ainda abertas continuam registradas na pasta `docs/`.
 
@@ -87,5 +95,5 @@ Não fazem parte da primeira versão:
 
 ## Próximos passos
 
-1. Implementar a inativação de serviços.
+1. Implementar o registro de atendimentos.
 2. Manter o README e os documentos atualizados a cada nova parte concluída.

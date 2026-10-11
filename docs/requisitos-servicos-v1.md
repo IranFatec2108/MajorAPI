@@ -24,10 +24,12 @@ Nesta etapa, o sistema deve permitir:
 - caso de uso de listagem por meio do `ServicoService`;
 - caso de uso de busca por id por meio do `ServicoService` com `findById` e `Optional`;
 - caso de uso de edição por meio do `ServicoService` com atualização de `nome` e `precoSugerido` na entidade existente;
+- caso de uso de inativação por meio do `ServicoService` com `findById`, `Optional` e marcação de `ativo=false` sem exclusão física;
 - endpoint REST para cadastro de serviço;
 - endpoint REST `GET /servicos` para listagem de serviços;
 - endpoint REST `GET /servicos/{id}` para busca por id com `@PathVariable`;
 - endpoint REST `PUT /servicos/{id}` para edição com DTO completo e `@PathVariable`;
+- endpoint REST `PATCH /servicos/{id}/inativar` para inativação lógica só com id na URL, sem corpo;
 - consulta `existsByNomeIgnoreCaseAndAtivoTrueAndIdNot` para duplicidade ignorando o próprio serviço;
 - validação da entrada com Bean Validation;
 - retorno HTTP `201 Created` em caso de cadastro bem-sucedido;
@@ -39,7 +41,7 @@ Nesta etapa, o sistema deve permitir:
 
 ### Ainda pendente nesta parte
 
-- inativação de serviço.
+- Nenhum item pendente. Módulo de Serviços fechado na V1 com cadastro, listagem, busca por id, edição e inativação.
 
 ## Entidade `Servico`
 
