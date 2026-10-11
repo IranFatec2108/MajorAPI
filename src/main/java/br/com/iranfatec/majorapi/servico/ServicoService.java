@@ -66,6 +66,24 @@ public class ServicoService {
 
      }
 
+     public ServicoResponseDto inativarPorId(Long id){
+        Optional <Servico> servicoPorId = servicoRepository.findById(id);
+
+        if(servicoPorId.isEmpty()){
+            throw new ServicoNaoEncontradoException("Serviço não existente, digite um ID válido");
+        }
+        Servico servico = servicoPorId.get();
+
+        if (!servico.isAtivo()){
+
+            return toResponseDto(servico);
+        }else{
+            servico.setAtivo(false);
+           Servico servicoAtualizado =  servicoRepository.save(servico);
+            return toResponseDto(servicoAtualizado);
+        }
+     }
+
 
     private Servico toEntity(ServicoRequestDto dto){
 
