@@ -93,6 +93,10 @@ Não fazem parte da primeira versão:
 - `docs/requisitos-servicos-v1.md`: requisitos e anotações de implementação do primeiro módulo.
 - `docs/decisoes-em-aberto.md`: decisões importantes que ainda precisam ser validadas.
 
+## Arquitetura
+
+<img src="docs/img/arquitetura-servicos.png" width="400" alt="Arquitetura Serviços">       
+
 ## Próximos passos
 
 1. Implementar o registro de atendimentos.
