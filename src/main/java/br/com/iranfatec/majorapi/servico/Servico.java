@@ -2,6 +2,7 @@ package br.com.iranfatec.majorapi.servico;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,6 +26,7 @@ public class Servico {
     @Column(name = "nome", nullable = false)
     private String nome;
 
+    @NotNull
     @PositiveOrZero
     @Column(name = "preco_sugerido", nullable = false)
     private BigDecimal precoSugerido;
