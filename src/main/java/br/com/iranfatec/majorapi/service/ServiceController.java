@@ -10,7 +10,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/servicos")
+@RequestMapping("/services")
 public class ServiceController {
 
     private final ServiceManager serviceManager;
@@ -20,33 +20,33 @@ public class ServiceController {
     }
 
     @PostMapping
-    public ResponseEntity<ServiceResponseDto> cadastrar (@Valid @RequestBody ServiceRequestDto dto)  {
-            ServiceResponseDto responseCadastro = serviceManager.registerService(dto);
-            return ResponseEntity.status(HttpStatus.CREATED).body(responseCadastro);
+    public ResponseEntity<ServiceResponseDto> registerService (@Valid @RequestBody ServiceRequestDto dto)  {
+            ServiceResponseDto responseRegisterService = serviceManager.registerService(dto);
+            return ResponseEntity.status(HttpStatus.CREATED).body(responseRegisterService);
         }
 
     @GetMapping
-    public ResponseEntity<List<ServiceResponseDto>> listar(){
-        List<ServiceResponseDto> servicosList = serviceManager.listServices();
-        return ResponseEntity.ok(servicosList);
+    public ResponseEntity<List<ServiceResponseDto>> listAllServices(){
+        List<ServiceResponseDto> responseServicesList = serviceManager.listServices();
+        return ResponseEntity.ok(responseServicesList);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ServiceResponseDto> listarPorId(@PathVariable Long id){
-        ServiceResponseDto responseListarPorId = serviceManager.listById(id);
-        return ResponseEntity.ok().body(responseListarPorId);
+    public ResponseEntity<ServiceResponseDto> listServiceById(@PathVariable Long id){
+        ServiceResponseDto responseListServiceById = serviceManager.listById(id);
+        return ResponseEntity.ok().body(responseListServiceById);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ServiceResponseDto> alterarPorId(@PathVariable Long id , @Valid @RequestBody ServiceRequestDto dto){
-        ServiceResponseDto responseAlterarPorId = serviceManager.updateById(id, dto);
-        return ResponseEntity.ok().body(responseAlterarPorId);
+    public ResponseEntity<ServiceResponseDto> updateServiceById(@PathVariable Long id , @Valid @RequestBody ServiceRequestDto dto){
+        ServiceResponseDto responseUpdateServiceById = serviceManager.updateById(id, dto);
+        return ResponseEntity.ok().body(responseUpdateServiceById);
     }
 
-    @PatchMapping("/{id}/inativar")
-    public ResponseEntity<ServiceResponseDto> inativarPorId (@PathVariable Long id){
-        ServiceResponseDto responseInativarPorId = serviceManager.deactivateById(id);
-        return  ResponseEntity.ok().body(responseInativarPorId);
+    @PatchMapping("/{id}/deactivate")
+    public ResponseEntity<ServiceResponseDto> deactivateServiceById (@PathVariable Long id){
+        ServiceResponseDto responseDeactivateServiceById = serviceManager.deactivateById(id);
+        return  ResponseEntity.ok().body(responseDeactivateServiceById);
     }
 
 }
