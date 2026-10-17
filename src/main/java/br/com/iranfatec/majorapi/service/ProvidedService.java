@@ -1,4 +1,4 @@
-package br.com.iranfatec.majorapi.servico;
+package br.com.iranfatec.majorapi.service;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -14,8 +14,8 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 @Entity
-@Table(name = "tb_servicos")
-public class Servico {
+@Table(name = "tb_services")
+public class ProvidedService {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,16 +23,16 @@ public class Servico {
     private Long id;
 
     @NotBlank
-    @Column(name = "nome", nullable = false)
-    private String nome;
+    @Column(name = "name", nullable = false)
+    private String name;
 
     @NotNull
     @PositiveOrZero
-    @Column(name = "preco_sugerido", nullable = false)
-    private BigDecimal precoSugerido;
+    @Column(name = "suggested_price", nullable = false)
+    private BigDecimal suggestedPrice;
 
-    @Column(name = "ativo", nullable = false)
-    private boolean ativo = true;
+    @Column(name = "active", nullable = false)
+    private boolean Active = true;
 
 
 }

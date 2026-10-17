@@ -1,7 +1,7 @@
 package br.com.iranfatec.majorapi.exception;
 
-import br.com.iranfatec.majorapi.servico.NomeAtivoJaExistenteException;
-import br.com.iranfatec.majorapi.servico.ServicoNaoEncontradoException;
+import br.com.iranfatec.majorapi.service.ActiveNameAlreadyExistsException;
+import br.com.iranfatec.majorapi.service.ServiceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -14,8 +14,8 @@ import java.util.stream.Collectors;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(NomeAtivoJaExistenteException.class)
-    public ResponseEntity<ApiErrorResponse> nomeAtivoJaExistenteException(NomeAtivoJaExistenteException exception) {
+    @ExceptionHandler(ActiveNameAlreadyExistsException.class)
+    public ResponseEntity<ApiErrorResponse> activeNameAlreadyExistsException(ActiveNameAlreadyExistsException exception) {
 
         ApiErrorResponse apiErrorResponse = new ApiErrorResponse(
                 HttpStatus.CONFLICT.value(),
@@ -27,9 +27,9 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<ApiErrorResponse> requestInvalidoException(MethodArgumentNotValidException methodArgumentNotValidException) {
+    public ResponseEntity<ApiErrorResponse> InvalidRequestException(MethodArgumentNotValidException methodArgumentNotValidException) {
 
-        String mensagemErro = methodArgumentNotValidException
+        String messageError = methodArgumentNotValidException
                 .getBindingResult()
                 .getFieldErrors()
                 .stream()
@@ -38,18 +38,18 @@ public class GlobalExceptionHandler {
 
         ApiErrorResponse apiErrorResponse = new ApiErrorResponse(
                 HttpStatus.BAD_REQUEST.value(),
-                mensagemErro
+                messageError
         );
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
                 .body(apiErrorResponse);
     }
 
-    @ExceptionHandler(ServicoNaoEncontradoException.class)
-    public ResponseEntity <ApiErrorResponse> servicoNaoEncontradoException(ServicoNaoEncontradoException servicoNaoEncontradoException){
+    @ExceptionHandler(ServiceNotFoundException.class)
+    public ResponseEntity <ApiErrorResponse> serviceNotFoundException(ServiceNotFoundException serviceNotFoundException){
         ApiErrorResponse apiErrorResponse = new ApiErrorResponse(
                 HttpStatus.NOT_FOUND.value(),
-                servicoNaoEncontradoException.getMessage()
+                serviceNotFoundException.getMessage()
         );
         return ResponseEntity
                 .status(HttpStatus.NOT_FOUND)
