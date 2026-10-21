@@ -32,7 +32,7 @@ public class ProvidedService {
     private BigDecimal suggestedPrice;
 
     @Column(name = "active", nullable = false)
-    private boolean Active = true;
+    private boolean active = true;
 
 
 }
