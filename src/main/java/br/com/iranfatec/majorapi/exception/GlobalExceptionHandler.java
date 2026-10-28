@@ -1,5 +1,6 @@
 package br.com.iranfatec.majorapi.exception;
 
+import br.com.iranfatec.majorapi.attendance.AttendanceNotFoundException;
 import br.com.iranfatec.majorapi.service.ActiveNameAlreadyExistsException;
 import br.com.iranfatec.majorapi.service.ServiceNotFoundException;
 import org.springframework.http.HttpStatus;
@@ -50,6 +51,17 @@ public class GlobalExceptionHandler {
         ApiErrorResponse apiErrorResponse = new ApiErrorResponse(
                 HttpStatus.NOT_FOUND.value(),
                 serviceNotFoundException.getMessage()
+        );
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(apiErrorResponse);
+
+    }
+    @ExceptionHandler(AttendanceNotFoundException.class)
+    public ResponseEntity <ApiErrorResponse> attendanceNotFoundException(AttendanceNotFoundException attendanceNotFoundException){
+        ApiErrorResponse apiErrorResponse = new ApiErrorResponse(
+                HttpStatus.NOT_FOUND.value(),
+                attendanceNotFoundException.getMessage()
         );
         return ResponseEntity
                 .status(HttpStatus.NOT_FOUND)
