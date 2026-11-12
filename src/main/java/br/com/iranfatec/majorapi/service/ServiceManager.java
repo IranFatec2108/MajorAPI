@@ -1,6 +1,6 @@
 package br.com.iranfatec.majorapi.service;
 
-import org.springframework.stereotype.Service; // Annotation do Spring (Sem conflito agora!)
+import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
