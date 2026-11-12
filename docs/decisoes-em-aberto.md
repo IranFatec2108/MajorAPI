@@ -11,22 +11,22 @@
 ## Fluxo de caixa
 
 **Decisão em aberto:**
-- **Opção 1:** gerar automaticamente uma entrada de caixa ao registrar um atendimento (valor = `amountPaid`).
-- **Opção 2:** registrar a entrada de caixa em um passo posterior, permitindo ajustes manuais.
+- **Opção 1:** gerar automaticamente uma entrada de caixa ao registrar um atendimento (valor = `amountPaid`).
+- **Opção 2:** registrar a entrada de caixa em um passo posterior, permitindo ajustes manuais.
 
-> **Status:** ainda não implementado. A lógica de caixa será planejada depois que a camada de `AttendanceController` estiver estável, garantindo que os atendimentos estejam bem definidos.
+> **Status:** ainda não implementado. O módulo de `Attendance` (manager + controller + endpoints REST) já está implementado no MVP; a lógica de caixa pode ser planejada na próxima iteração.
 
 ## Forma de pagamento
 
 **Decisão pendente:**
-- **Opção A:** incluir um campo `paymentMethod` (enum: `CASH`, `CARD`, `PIX`, `OTHER`) no `AttendanceCreateRequestDto` já na V1.
-- **Opção B:** adiar esse campo para a V2, mantendo apenas `amountPaid` por enquanto.
+- **Opção A:** incluir um campo `paymentMethod` (enum: `CASH`, `CARD`, `PIX`, `OTHER`) no `AttendanceCreateRequestDto` já na V1.
+- **Opção B:** adiar esse campo para a V2, mantendo apenas `amountPaid` por enquanto.
 
 > **Ação:** discutir com o dono da barbearia quais formas de pagamento são utilizadas atualmente. Até que a decisão seja tomada, **não há campo `paymentMethod`** no modelo de `Attendance`.
 
 ## Produtos e estoque
 
-Produtos e estoque básico fazem parte da visão maior da V1, mas entram depois do módulo de **Services** e da primeira parte de **Attendances**.
+Produtos e estoque básico fazem parte da visão maior da V1, mas entram depois do módulo de **Services** e da consolidação do módulo de **Attendances**.
 
 ## Categorias de serviço
 

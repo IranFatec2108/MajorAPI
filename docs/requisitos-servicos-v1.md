@@ -2,71 +2,66 @@
 
 ## Objetivo do módulo
 
-Permitir o cadastro e a manutenção dos **services** oferecidos pela barbearia, com informações básicas e regras simples de disponibilidade para uso futuro nos registros de **attendance**.
+Permitir o cadastro e a manutenção dos **services** (serviços) oferecidos pela barbearia, com informações básicas e regras simples de disponibilidade para uso nos registros de **attendances**.
 
-## Escopo desta primeira parte
+## Escopo desta parte
 
 Nesta etapa, o sistema deve permitir:
 
 - cadastrar um **service**;
 - listar **services** cadastrados;
+- buscar um **service** por ID;
 - editar um **service**;
 - inativar um **service**.
 
-## Estado de implementação da parte
+## Estado de implementação
 
-### Implementado até o momento
+### Implementado
 
-- entidade `Service`;
-- persistência por meio do `ServiceRepository`;
-- `ServiceRequestDto` e `ServiceResponseDto`;
-- caso de uso de cadastro por meio do `ServiceService`;
-- caso de uso de listagem por meio do `ServiceService`;
-- caso de uso de busca por id por meio do `ServiceService` com `findById` e `Optional`;
-- caso de uso de edição por meio do `ServiceService` com atualização de **name** e **suggestedPrice** na entidade existente;
-- caso de uso de inativação lógica por meio do `ServiceService` com `findById`, `Optional` e marcação de `active = false` sem exclusão física;
-- endpoint REST para cadastro de service;
-- endpoint REST `GET /services` para listagem de services;
-- endpoint REST `GET /services/{id}` para busca por id com `@PathVariable`;
-- endpoint REST `PUT /services/{id}` para edição com DTO completo e `@PathVariable`;
-- endpoint REST `PATCH /services/{id}/deactivate` para inativação lógica só com id na URL, sem corpo;
-- consulta `existsByNameIgnoreCaseAndActiveTrueAndIdNot` para duplicidade ignorando o próprio service;
-- validação da entrada com Bean Validation;
-- retorno HTTP `201 Created` em caso de cadastro bem‑sucedido;
-- tratamento global de erros com `GlobalExceptionHandler` e `ApiErrorResponse(statusCode, message)`;
-- duplicidade de nome entre services ativos retorna `409 Conflict`;
-- dados inválidos no DTO retornam `400 Bad Request` com as mensagens juntas;
-- exceção de negócio `ActiveNameAlreadyExistsException` como `RuntimeException`, sem `throws` no service e no controller;
-- busca por id inexistente retorna `404 Not Found` por meio de `ServiceNotFoundException` no formato `ApiErrorResponse`.
+- Entidade `ProvidedService` com persistência JPA;
+- `ProvidedServiceRepository` para acesso aos dados e consultas de duplicidade;
+- `ServiceRequestDto` e `ServiceResponseDto` para entrada e saída da API;
+- `ServiceManager` com casos de uso de cadastro, listagem, busca por ID, edição e inativação, incluindo mapeamento entre entidade e DTOs;
+- `ServiceController` expondo endpoints REST em `/services`;
+- Validação de entrada com Bean Validation;
+- Tratamento global de erros com `GlobalExceptionHandler` e `ApiErrorResponse(statusCode, message)`;
+- Exceções de negócio: `ActiveNameAlreadyExistsException` (409) e `ServiceNotFoundException` (404).
+
+### Endpoints
+
+- `POST /services` — cria um service (`201 Created`)
+- `GET /services` — lista services (`200 OK`)
+- `GET /services/{id}` — busca service por ID (`200 OK` / `404`)
+- `PUT /services/{id}` — atualiza um service (`200 OK`)
+- `PATCH /services/{id}/deactivate` — inativa um service (`200 OK`)
 
 ### Ainda pendente nesta parte
 
-- Nenhum item pendente. Módulo de **Services** fechado na V1 com cadastro, listagem, busca por id, edição e inativação.
+- Nenhum item funcional pendente para o escopo V1 de Services.
+- Testes automatizados podem ser expandidos/refatorados conforme evolução do projeto.
 
-## Entidade `Service`
+## Entidade `ProvidedService`
 
-Campos previstos:
+Campos principais:
 
-- `id`;
-- `name`;
-- `suggestedPrice`;
-- `active`.
+- `id` (gerado pelo sistema);
+- `name` (obrigatório);
+- `suggestedPrice` (BigDecimal);
+- `active` (booleano, soft-delete).
 
 ## Regras de negócio confirmadas
 
-- O `id` deve ser gerado pelo sistema.
 - Todo service novo deve ser criado com `active = true`.
 - O **name** do service é obrigatório.
-- Não deve haver duplicação de **name** entre services ativos.
+- Não deve haver duplicação de **name** entre services ativos (case-insensitive).
 - Um novo service pode reutilizar o nome de um service inativo.
-- O **suggestedPrice** pode ser alterado posteriormente.
-- O **name** do service também pode ser alterado posteriormente.
+- O **suggestedPrice** e o **name** podem ser alterados posteriormente.
 - Services inativos **não** devem ser utilizados em novos registros de **attendance**.
 - Um service inativo não precisa ser excluído fisicamente do banco de dados.
-- A edição é permitida para services ativos e inativos, sem alterar o campo `active`.
+- A edição é permitida para services ativos e inativos, sem alterar o campo `active` via `PUT`.
 - Só existe inativação na V1, sem reativação e sem exclusão física.
-- Lista retorna ativos e inativos juntos na V1, sem filtro `?active`.
-- Combos podem ser cadastrados como services comuns, sem necessidade de lógica especial nesta etapa.
+- A listagem retorna ativos e inativos juntos na V1, sem filtro por status.
+- Combos podem ser cadastrados como services comuns, sem lógica especial nesta etapa.
 
 ## Catálogo inicial levantado
 
@@ -90,7 +85,7 @@ Campos previstos:
 
 ## Fora do escopo desta parte
 
-- Registro de **attendances**;
+- Registro de **attendances** (já implementado em módulo separado);
 - Indicadores;
 - Fluxo de caixa;
 - Produtos;
