@@ -38,7 +38,7 @@ Nesta etapa, o sistema deve permitir:
 ### Ainda pendente nesta parte
 
 - Nenhum item funcional pendente para o escopo V1 de Services.
-- Testes automatizados podem ser expandidos/refatorados conforme evolução do projeto.
+- Testes automatizados podem ser expandidos/refatorados conforme a evolução do projeto.
 
 ## Entidade `ProvidedService`
 

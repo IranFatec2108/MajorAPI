@@ -14,7 +14,7 @@
 - **Opção 1:** gerar automaticamente uma entrada de caixa ao registrar um atendimento (valor = `amountPaid`).
 - **Opção 2:** registrar a entrada de caixa em um passo posterior, permitindo ajustes manuais.
 
-> **Status:** ainda não implementado. O módulo de `Attendance` (manager + controller + endpoints REST) já está implementado no MVP; a lógica de caixa pode ser planejada na próxima iteração.
+> **Status:** ainda não implementado. O módulo de `Attendance` (manager, controller e endpoints REST) já está implementado no MVP; a lógica de caixa pode ser planejada na próxima iteração.
 
 ## Forma de pagamento
 
