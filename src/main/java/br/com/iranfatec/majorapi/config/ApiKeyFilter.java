@@ -23,16 +23,24 @@ public class ApiKeyFilter extends OncePerRequestFilter {
 
         String path = request.getRequestURI();
 
-        // 1. Libera o endpoint /health para o cron-job.org e requisições OPTIONS (preflight do CORS)
-        if ("/health".equals(path) || "OPTIONS".equalsIgnoreCase(request.getMethod())) {
+        if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {
+            response.setHeader("Access-Control-Allow-Origin", "https://vercel.app");
+            response.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, DELETE, OPTIONS");
+            response.setHeader("Access-Control-Allow-Headers", "*");
+            response.setHeader("Access-Control-Allow-Credentials", "true");
+            response.setStatus(HttpServletResponse.SC_OK);
+            return;
+        }
+
+        if ("/health".equals(path)) {
             filterChain.doFilter(request, response);
             return;
         }
 
-        // 2. Verifica se o Header X-API-KEY bate com a senha configurada
         String requestApiKey = request.getHeader("X-API-KEY");
 
         if (apiKey == null || !apiKey.equals(requestApiKey)) {
+            response.setHeader("Access-Control-Allow-Origin", "https://vercel.app");
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             response.setContentType("application/json");
             response.getWriter().write("{\"error\": \"Unauthorized: Invalid or missing API Key\"}");
